@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="600" viewBox="0 0 1500 600" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#080a12"/>
+    <stop offset="0.55" stop-color="#0a0d18"/>
+    <stop offset="1" stop-color="#0c0710"/>
+  </linearGradient>
+  <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="rgba(138,125,255,0.32)"/>
+    <stop offset="1" stop-color="rgba(138,125,255,0)"/>
+  </radialGradient>
+  <radialGradient id="glowR" cx="0.5" cy="0.5" r="0.5">
+    <stop offset="0" stop-color="rgba(255,93,108,0.30)"/>
+    <stop offset="1" stop-color="rgba(255,93,108,0)"/>
+  </radialGradient>
+  <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0.4">
+    <stop offset="0" stop-color="#b9adff"/>
+    <stop offset="0.55" stop-color="#8a7dff"/>
+    <stop offset="1" stop-color="#c04bff"/>
+  </linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#182034"/>
+    <stop offset="1" stop-color="#121829"/>
+  </linearGradient>
+  <linearGradient id="meter" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#2ecc71"/>
+    <stop offset="0.5" stop-color="#f5a524"/>
+    <stop offset="1" stop-color="#ff5d6c"/>
+  </linearGradient>
+  <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="9"/>
+  </filter>
+</defs>
+<rect x="0" y="0" width="1500" height="600" rx="0" ry="0" fill="url(#bg)"/>
+<g filter="url(#soft)"><circle cx="180" cy="120" r="280" fill="url(#glowA)"/></g>
+<rect x="18" y="18" width="1464" height="564" rx="28" ry="28" fill="none" stroke="#1b2236" stroke-width="1.5"/>
+<rect x="92" y="96" width="96" height="96" rx="24" ry="24" fill="url(#panel)" stroke="#303c5d" stroke-width="1.5"/>
+<text x="140" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="52" font-weight="400" fill="#e7ecf8" text-anchor="middle" dominant-baseline="central">🪓</text>
+<text x="212" y="150" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="78" font-weight="900" fill="url(#brand)" text-anchor="start" dominant-baseline="central">HandsOff</text>
+<text x="92" y="250" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="52" font-weight="800" fill="#e7ecf8" text-anchor="start">再买剁手</text>
+<text x="349.688" y="250" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#95a3c4" text-anchor="start" dominant-baseline="central">on-chain buy-discipline guard for Solana</text>
+<text x="92" y="332" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="40" font-weight="800" fill="#b9adff" text-anchor="start">Discipline you can hear.</text>
+<rect x="92" y="384" width="145.96852" height="42" rx="21.0" ry="21.0" fill="#1a233b" stroke="#232c45" stroke-width="1.2"/><text x="164.98426" y="405.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#2ecc71" text-anchor="middle" dominant-baseline="central">Read-only</text>
+<rect x="251.96852" y="384" width="169.02274000000003" height="42" rx="21.0" ry="21.0" fill="#1a233b" stroke="#232c45" stroke-width="1.2"/><text x="336.47989" y="405.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#4aa8ff" text-anchor="middle" dominant-baseline="central">Self-hosted</text>
+<rect x="434.99126" y="384" width="179.53870000000003" height="42" rx="21.0" ry="21.0" fill="#1a233b" stroke="#232c45" stroke-width="1.2"/><text x="524.76061" y="405.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#b9adff" text-anchor="middle" dominant-baseline="central">MIT licensed</text>
+<rect x="628.5299600000001" y="384" width="215.73787000000002" height="42" rx="21.0" ry="21.0" fill="#1a233b" stroke="#232c45" stroke-width="1.2"/><text x="736.398895" y="405.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#f5a524" text-anchor="middle" dominant-baseline="central">Helius free tier</text>
+<text x="92" y="470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="20" font-weight="500" fill="#62718f" text-anchor="start">Cross your limit and the page speaks up — in EN or 中.</text>
+<text x="92" y="510" font-family="ui-monospace, SFMono-Regular, Menlo, 'DejaVu Sans Mono', monospace" font-size="22" font-weight="700" fill="#e7ecf8" text-anchor="start">🔊  github.com/2040-hub/handsoff</text>
+<g filter="url(#soft)"><circle cx="1168.0" cy="300.0" r="210" fill="url(#glowR)"/></g>
+<rect x="922" y="90" width="492" height="420" rx="26" ry="26" fill="none" stroke="rgba(255,93,108,0.30)" stroke-width="6"/>
+<rect x="928" y="96" width="480" height="408" rx="22" ry="22" fill="url(#panel)" stroke="rgba(255,93,108,0.85)" stroke-width="2"/>
+<text x="956" y="138" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#95a3c4" text-anchor="start" letter-spacing="2">SELF-DISCIPLINE</text>
+<rect x="1303.566255" y="122" width="76.43374500000002" height="30" rx="15.0" ry="15.0" fill="rgba(255,93,108,0.14)" stroke="rgba(255,93,108,0.45)" stroke-width="1.2"/><text x="1341.7831274999999" y="137.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="13" font-weight="800" fill="#ff5d6c" text-anchor="middle" dominant-baseline="central">● LIVE</text>
+<text x="956" y="212" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="20" font-weight="800" fill="#62718f" text-anchor="start" letter-spacing="3">BUY</text>
+<text x="956" y="284" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="92" font-weight="900" fill="#ff5d6c" text-anchor="start">#14</text>
+<text x="956" y="322" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="16" font-weight="600" fill="#95a3c4" text-anchor="start">today · across all wallets</text>
+<rect x="956" y="352" width="424" height="14" rx="7" ry="7" fill="#0d111d" stroke="#1b2236" stroke-width="1.0"/>
+<rect x="956" y="352" width="424" height="14" rx="7" ry="7" fill="url(#meter)"/>
+<rect x="1167.0" y="347" width="2" height="24" rx="0" ry="0" fill="rgba(245,165,36,0.7)"/>
+<text x="1168.0" y="392" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#f5a524" text-anchor="middle">soft 5</text>
+<rect x="1379" y="347" width="2" height="24" rx="0" ry="0" fill="#ff5d6c"/>
+<text x="1380" y="392" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#ff5d6c" text-anchor="end">hard 10</text>
+<circle cx="1380" cy="359" r="9" fill="#ff5d6c" stroke="#080a12" stroke-width="3"/>
+<rect x="956" y="428" width="424" height="52" rx="14" ry="14" fill="rgba(255,93,108,0.12)" stroke="rgba(255,93,108,0.5)" stroke-width="1.0"/>
+<text x="976" y="454" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#ff5d6c" text-anchor="start" dominant-baseline="central">🔊</text>
+<text x="1010" y="454" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Helvetica, Arial, sans-serif" font-size="19" font-weight="700" fill="#e7ecf8" text-anchor="start" dominant-baseline="central">“Put your hands off the wallet.”</text>
+<path d="M 1411 280 A 20 20 0 0 1 1411 320" fill="none" stroke="#ff5d6c" stroke-width="4" stroke-linecap="round" opacity="0.60"/>
+<path d="M 1411 260 A 40 40 0 0 1 1411 340" fill="none" stroke="#ff5d6c" stroke-width="4" stroke-linecap="round" opacity="0.43"/>
+<path d="M 1411 240 A 60 60 0 0 1 1411 360" fill="none" stroke="#ff5d6c" stroke-width="4" stroke-linecap="round" opacity="0.26"/>
+</svg>

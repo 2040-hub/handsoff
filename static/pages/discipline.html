@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>HandsOff · Buy Discipline</title>
+  <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%93%3C/text%3E%3C/svg%3E">
+  <!-- theme.js applies the saved/preferred theme before first paint (no flash). -->
+  <script src="/static/js/theme.js?v=3"></script>
+  <script src="/static/js/i18n.js?v=3"></script>
+  <link rel="stylesheet" href="/static/css/discipline.css?v=3">
+</head>
+<body data-i18n-doctitle="pageTitle">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="logo handsoff-logo">🪓</span>
+        <span><span data-i18n="brandTitle">HandsOff</span>
+          <span class="sub" data-i18n="brandSub">on-chain buy-discipline guard</span></span>
+      </div>
+
+      <div id="live" class="live" data-i18n-title="liveTitle" title="Live streaming">
+        <span class="dot"></span><span class="label" data-i18n="live">Live</span>
+      </div>
+
+      <span class="spacer"></span>
+
+      <span class="stats" id="stats-chips" data-i18n-title="todayTitle" title="Today's totals across your wallets">
+        <span class="stat-chip"><span data-i18n="statBuys">Buys</span> <b id="stat-buys">0</b></span>
+        <span class="stat-chip"><span data-i18n="statTokens">Tokens</span> <b id="stat-tokens">0</b></span>
+        <span class="stat-chip"><span data-i18n="statWallets">Wallets</span> <b id="stat-wallets">0</b></span>
+      </span>
+
+      <button id="sound-toggle" class="icon-btn on" type="button">🔊 <span data-i18n="soundOn">Sound</span></button>
+      <button id="theme-toggle" class="theme-toggle" type="button"
+              data-i18n-title="themeTitle" title="Toggle theme" aria-label="Toggle theme"></button>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn" id="lang-zh" type="button">中</button>
+        <button class="lang-btn" id="lang-en" type="button">EN</button>
+      </div>
+
+      <!-- Signed-in wallet chip + logout (shown only when [WEB] enable_auth = true). -->
+      <span id="wallet-chip" class="wallet-chip hidden" data-i18n-title="walletChipTitle" title="Signed-in wallet">
+        <span class="pk-dot"></span><span id="wallet-addr">…</span>
+      </span>
+      <button id="logout-btn" class="logout-btn hidden" type="button" data-i18n="logout">Logout</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="mag">🔍</span>
+        <input id="search" class="input" type="text" autocomplete="off" spellcheck="false"
+               maxlength="80" data-i18n-placeholder="searchPlaceholder"
+               placeholder="Search name, symbol, contract, or wallet…">
+      </div>
+
+      <div class="field">
+        <label for="date" data-i18n="fieldDate">Date</label>
+        <input id="date" class="input" type="date">
+        <button id="date-clear" class="btn-ghost" type="button"
+                data-i18n-title="dateClearTitle" title="Clear date">✕</button>
+      </div>
+
+      <div class="field">
+        <label for="sort" data-i18n="fieldSort">Sort</label>
+        <select id="sort" class="select">
+          <option value="time-newest" data-i18n="sortNewest">Newest first</option>
+          <option value="time-oldest" data-i18n="sortOldest">Oldest first</option>
+          <option value="amount-desc" data-i18n="sortAmountDesc">Biggest buy</option>
+          <option value="mcap-desc" data-i18n="sortMcapDesc">Market cap: high → low</option>
+          <option value="mcap-asc" data-i18n="sortMcapAsc">Market cap: low → high</option>
+        </select>
+      </div>
+
+      <!-- Self-discipline panel: your wallets' combined buy count FOR TODAY + label
+           and a click-through to GMGN. Shown only when wallets are configured;
+           populated from /api/config + /api/stats. Turns amber at the soft cap and
+           pulses red at the hard cap, reinforcing the spoken voice reminder. -->
+      <a id="myself-panel" class="myself-panel hidden" href="#" target="_blank"
+         rel="noopener" data-i18n-title="myselfTitle"
+         title="Your wallets — today's buys (open on GMGN)">
+        <span class="myself-ico" aria-hidden="true">🪓</span>
+        <span class="myself-main">
+          <span class="myself-top">
+            <span class="myself-name" id="myself-name">—</span>
+            <span class="myself-go" aria-hidden="true">↗</span>
+          </span>
+          <span class="myself-sub">
+            <span class="myself-today" data-i18n="myselfToday">Today</span>
+            <b id="myself-count">—</b>
+            <span class="myself-limits" id="myself-limits"></span>
+          </span>
+        </span>
+      </a>
+    </div>
+
+    <div id="loading" class="state">
+      <div class="spinner"></div>
+      <div data-i18n="loading">Loading buys…</div>
+    </div>
+
+    <div id="grid" class="grid"></div>
+
+    <div id="empty" class="state hidden">
+      <div class="big">🪓</div>
+      <div data-i18n="empty">No buys yet. A card appears for each buy from your monitored wallets.</div>
+    </div>
+
+    <div id="pager" class="pager hidden">
+      <button id="page-first" class="btn-ghost page-btn" type="button"
+              data-i18n="pageFirst" data-i18n-title="pageFirstTitle" title="First page">« First</button>
+      <button id="page-prev" class="btn-ghost page-btn" type="button"
+              data-i18n="pagePrev" data-i18n-title="pagePrevTitle" title="Previous page">‹ Prev</button>
+      <span id="page-info" class="page-info" aria-live="polite">—</span>
+      <button id="page-next" class="btn-ghost page-btn" type="button"
+              data-i18n="pageNext" data-i18n-title="pageNextTitle" title="Next page">Next ›</button>
+      <button id="page-last" class="btn-ghost page-btn" type="button"
+              data-i18n="pageLast" data-i18n-title="pageLastTitle" title="Last page">Last »</button>
+    </div>
+
+    <div class="footer">
+      <span data-i18n="brandTitle">HandsOff</span> <span id="version">v1.1.1</span> · <span id="updated">—</span>
+      · <span data-i18n="footerSuffix">one card per wallet buy, grouped by token</span>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="/static/js/discipline.js?v=3"></script>
+</body>
+</html>

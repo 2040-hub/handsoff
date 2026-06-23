@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>HandsOff — Sign in</title>
+  <link rel="icon"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%93%3C/text%3E%3C/svg%3E">
+  <!-- theme.js applies the saved/preferred theme before first paint (no flash). -->
+  <script src="/static/js/theme.js?v=3"></script>
+  <script src="/static/js/i18n.js?v=3"></script>
+  <link rel="stylesheet" href="/static/css/discipline.css?v=3">
+</head>
+<body class="login-body" data-i18n-doctitle="loginPageTitle">
+  <div class="login-controls">
+    <button id="theme-toggle" class="theme-toggle" type="button"
+            data-i18n-title="themeTitle" title="Toggle theme" aria-label="Toggle theme"></button>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button class="lang-btn" id="lang-zh" type="button">中</button>
+      <button class="lang-btn" id="lang-en" type="button">EN</button>
+    </div>
+  </div>
+
+  <main class="login-card">
+    <div class="login-brand">
+      <span class="logo">🪓</span>
+      <div>
+        <div class="login-title" data-i18n="loginBrand">HandsOff</div>
+        <div class="login-sub" data-i18n="loginSub">Connect a whitelisted Solana wallet to continue</div>
+      </div>
+    </div>
+
+    <div id="wallet-list" class="wallet-list">
+      <div class="login-status info" data-i18n="loginDetecting">Detecting wallets…</div>
+    </div>
+
+    <div id="status" class="login-status"></div>
+
+    <div class="login-note" data-i18n-html="loginNote">
+      Signing proves wallet ownership. <b>No transaction is sent</b> and no funds move.
+      Only whitelisted wallets can access HandsOff.
+    </div>
+
+    <div class="login-foot"><span data-i18n="loginBrand">HandsOff</span> <span id="version">v1.1.1</span></div>
+  </main>
+
+  <script src="/static/js/login.js?v=3"></script>
+</body>
+</html>

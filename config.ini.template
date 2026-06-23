@@ -1,0 +1,145 @@
+; ============================================================================
+;  HandsOff (再买剁手) — configuration
+;  Copy this file to  config.ini  and fill it in:   cp config.ini.template config.ini
+;  复制本文件为 config.ini 并填写：               cp config.ini.template config.ini
+; ============================================================================
+
+[HELIUS]
+; Your Helius API key (free plan is enough). Get one at https://dashboard.helius.dev
+; Helius API Key（免费套餐即可），在 https://dashboard.helius.dev 申请。
+api_key =
+
+; Optional RPC base override. Leave blank to use Helius mainnet
+; (https://mainnet.helius-rpc.com). Any standard Solana RPC base also works.
+; 可选 RPC 地址。留空则使用 Helius 主网。
+rpc_url =
+
+; Seconds between polling each wallet for new transactions (>= 5).
+; 25s with a few wallets stays comfortably inside the free tier.
+; 轮询每个钱包新交易的间隔秒数（>=5）。
+poll_interval = 25
+
+; Signatures fetched per poll page (1-100) and how many pages to walk if a wallet
+; is very active between polls. 25 x 4 = up to 100 new buys caught per poll.
+; 每次轮询拉取的签名条数与翻页上限。
+signatures_limit = 25
+max_pages_per_poll = 4
+
+; Token metadata / price cache lifetimes (seconds). Metadata rarely changes;
+; price is refreshed for tokens with recent buys on this cadence.
+; 代币元数据 / 价格缓存有效期（秒）。
+metadata_ttl = 86400
+price_ttl = 300
+price_refresh_interval = 300
+
+; Seed the per-wallet cursor silently on first run so existing history is NOT
+; replayed as a flood of cards. Set false to card recent history on first launch.
+; 首次运行时静默记录游标，避免回放历史交易。设为 false 则首次启动会补卡最近历史。
+seed_silent = true
+
+; Ignore "buys" smaller than this many SOL (dust / fee-only noise).
+; 忽略小于该 SOL 数额的买入（粉尘 / 仅手续费噪声）。
+min_sol_amount = 0.0001
+
+
+[WALLETS]
+; The wallets to watch — THESE ARE YOURS. Comma-separated ADDRESS:nickname pairs
+; (nickname optional). The self-discipline count below is the COMBINED number of
+; buys across ALL of these wallets today.
+; 要监控的钱包（你自己的）。逗号分隔的 地址:昵称（昵称可选）。下方的自律计数是
+; 这些钱包今天买入次数的合计。
+;
+; Example / 示例:
+;   addresses = 95jpiZZ8PxYzq4Lfvk8Se2LHsTCMVPL9hXwZp2JBGSHm:Main,
+;               8Q5bHY9RHtuYcmK7i1qvmYJZN8QXYYaHi9Ruzt2y4L6P:Degen
+addresses =
+
+
+[DISCIPLINE]
+; The heart of the tool. When today's COMBINED buy count reaches a limit, the web
+; page speaks a reminder out loud (and the panel turns amber / pulsing red).
+; 工具核心：当今日合计买入次数达到阈值时，网页会语音播报提醒（面板变黄 / 红色脉冲）。
+;
+; soft_buy_amount  — gentle "stay disciplined" reminder threshold (0 = off).
+; hard_buy_amount  — firm "hands off the wallet!" threshold (0 = off).
+; 软限制 / 硬限制阈值（0 = 关闭）。
+soft_buy_amount = 5
+hard_buy_amount = 10
+
+; How many times each spoken reminder may play PER DAY. The voice starts the moment
+; the count reaches the threshold and repeats once on every further buy, up to this
+; cap. 0 = unlimited. Caps + "never re-speak the same count" persist across reloads,
+; tabs and restarts.
+; 每个语音提醒每天最多播报次数。0 = 不限。达到阈值即开始，每多一笔再播一次，直到上限。
+soft_max_alerts = 0
+hard_max_alerts = 0
+
+; Should buying the SAME token (CA) more than once today count each time?
+;   true  (default) — every buy counts. 3 buys of one CA add 3 to today's count.
+;                     (the original behavior — keeps the limit honest about ALL apes.)
+;   false           — a repeat buy of a CA you already bought today does NOT count
+;                     again; each distinct CA counts once. Re-entering one position
+;                     can't trip the soft/hard limit; only NEW tokens push you toward it.
+; 今天重复买入同一个代币（CA）是否每次都计入？true（默认）= 每笔都算，同一 CA 买 3 次记 3 次
+; （原有行为）；false = 同一 CA 当天只记 1 次，重复加仓不再累加，只有买入新代币才会逼近阈值。
+enable_duplicate_buy = true
+
+; Optional label + GMGN link target for the self-discipline panel. Leave blank to
+; use a sensible default (the single wallet's nickname, or "My Wallets").
+; 自律面板的标签与 GMGN 跳转地址（可选）。留空使用默认值。
+label =
+panel_url =
+
+
+[CHIME]
+; A short rising chime plays for a brand-new buy card. It starts at the Nth buy of a
+; token (start_seq) and rings at most `max` times per token, so a heavily-traded CA
+; can't ring forever. Set enabled = false to silence the chime (the voice still works).
+; 新买入卡片会播放上升提示音：从某代币的第 start_seq 笔买入开始，每个代币最多响 max 次。
+enabled = true
+start_seq = 1
+max = 5
+
+
+[WEB]
+; The local web UI bind address. Keep 127.0.0.1 unless you enable wallet login below
+; (or front it with your own reverse proxy / auth).
+; 本地网页地址。除非启用下方的钱包登录（或自行加反向代理 / 鉴权），否则请保持 127.0.0.1。
+host = 127.0.0.1
+port = 8787
+
+; SQLite database file (created automatically). Holds buy cards + the voice ledger.
+; SQLite 数据库文件（自动创建），保存买入卡片与语音播报账本。
+db_path = handsoff.db
+
+; --- Optional: gate the web UI behind a Solana-wallet whitelist login ---
+; --- 可选：用 Solana 钱包白名单登录保护网页 ---
+; When false (default) the UI is OPEN on the bind address above. When true, ONLY wallets
+; in whitelist_wallet_lists may sign in (by signing a message — NO transaction is sent,
+; no funds move) and view the page. Requires pynacl + base58 (see requirements.txt). If
+; true but those are missing, or session_secret is weak, HandsOff refuses to serve the
+; UI (fail-closed) while the poller keeps running.
+; false（默认）时网页在上面的地址开放访问；true 时只有 whitelist_wallet_lists 中的钱包才能
+; 签名登录（仅签名，不发交易、不动资金）并查看页面。需要 pynacl + base58。
+enable_auth = false
+
+; Comma-separated allow-list of Solana wallet addresses. enable_auth=true + empty = nobody.
+; 逗号分隔的 Solana 钱包地址白名单。enable_auth=true 且此项为空 = 任何人都无法登录。
+whitelist_wallet_lists =
+
+; Secret that signs session tokens. MUST be long & random when enable_auth=true
+; (>= 16 chars, not the default). Generate one:
+;   python3 -c "import secrets; print(secrets.token_urlsafe(48))"
+; 用于签发会话令牌的密钥。启用登录时必须为足够长的随机值（>=16 字符）。
+session_secret =
+
+; Session lifetime (seconds; default 7 days) and sign-in nonce lifetime (seconds).
+; 会话有效期（秒，默认 7 天）与登录挑战 nonce 有效期（秒）。
+session_ttl = 604800
+nonce_ttl = 300
+
+
+[GENERAL]
+; Logging verbosity: DEBUG | INFO | WARNING | ERROR
+; 日志级别。
+log_level = INFO
